@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  password     String
+  name         String?
+  plan         String        @default("free")
+  stripeId     String?
+  jobs         Job[]
+  skills       Skill[]
+  coverLetters CoverLetter[]
+  createdAt    DateTime      @default(now())
+}
+
+model Job {
+  id             String      @id @default(cuid())
+  company        String
+  role           String
+  status         String      @default("wishlist")
+  notes          String?
+  jobDescription String?
+  matchScore     Int?
+  appliedAt      DateTime?
+  responseAt     DateTime?
+  resumeUrl      String?
+  coverLetterUrl String?
+  industry       String?
+  userId         String
+  user           User        @relation(fields: [userId], references: [id])
+  interviews     Interview[]
+  createdAt      DateTime    @default(now())
+}
+
+model Interview {
+  id        String   @id @default(cuid())
+  jobId     String
+  job       Job      @relation(fields: [jobId], references: [id])
+  date      DateTime
+  type      String
+  notes     String?
+  createdAt DateTime @default(now())
+}
+
+model CoverLetter {
+  id        String   @id @default(cuid())
+  jobTitle  String
+  company   String
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  level     String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
