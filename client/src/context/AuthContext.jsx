@@ -1,15 +1,16 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { loginUser, registerUser, getMe } from '../services/authService'
+import { loginUser, registerUser, getMe, verify2FACode } from '../services/authService'
 
 const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [twoFactorPending, setTwoFactorPending] = useState(false)
+  const [tempToken, setTempToken] = useState(null)
   const navigate = useNavigate()
 
-  // on app load, check if token exists and fetch user
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -23,9 +24,28 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const login = async (data) => {
-    const { token, user } = await loginUser(data)
+    const result = await loginUser(data)
+
+    // 2FA required
+    if (result.requires2FA) {
+      setTempToken(result.tempToken)
+      setTwoFactorPending(true)
+      navigate('/2fa')
+      return
+    }
+
+    // normal login
+    localStorage.setItem('token', result.token)
+    setUser(result.user)
+    navigate('/dashboard')
+  }
+
+  const verify2FA = async (code) => {
+    const { token, user } = await verify2FACode({ tempToken, code })
     localStorage.setItem('token', token)
     setUser(user)
+    setTwoFactorPending(false)
+    setTempToken(null)
     navigate('/dashboard')
   }
 
@@ -39,17 +59,21 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token')
     setUser(null)
+    setTwoFactorPending(false)
+    setTempToken(null)
     navigate('/login')
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{
+      user, setUser, login, register, logout,
+      loading, verify2FA, twoFactorPending
+    }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
-// custom hook for easy access
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (!context) throw new Error('useAuth must be used within AuthProvider')
