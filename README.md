@@ -1,4 +1,4 @@
-# CareerCraft 🚀
+# ApplyWise 🚀
 
 **An AI-powered career platform that helps developers and professionals strategize job searches, optimize applications, and track their career growth.**
 
