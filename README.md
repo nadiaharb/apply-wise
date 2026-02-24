@@ -1,5 +1,9 @@
 # ApplyWise 🚀
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://apply-wise-ruby.vercel.app)
+[![Made with React](https://img.shields.io/badge/React-18-blue)](https://react.dev)
+[![Node.js](https://img.shields.io/badge/Node.js-18-green)](https://nodejs.org)
+
 **An AI-powered career platform that helps developers and professionals strategize job searches, optimize applications, and track their career growth.**
 
 ![Apply Wise Dashboard](https://placehold.co/1200x600/3b82f6/ffffff?text=ApplyWise+Dashboard)
