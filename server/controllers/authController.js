@@ -185,7 +185,7 @@ const setup2FA = async (req, res, next) => {
 
     // generate a new secret
     const secret = speakeasy.generateSecret({
-      name: `CareerCraft (${user.email})`
+      name: `Apply Wise (${user.email})`
     })
 
     // save the secret temporarily 
