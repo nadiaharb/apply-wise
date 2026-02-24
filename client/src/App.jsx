@@ -11,6 +11,8 @@ import CoverLetters from './pages/CoverLetters'
 import Skills from './pages/Skills'
 import Settings from './pages/Settings'
 import Upgrade from './pages/Upgrade'
+import { Toaster } from 'react-hot-toast'
+import JobDetail from './pages/JobDetail'
 
 
 const queryClient = new QueryClient()
@@ -20,6 +22,7 @@ function App(){
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
       <AuthProvider>
+        <Toaster position="top-right" />
         <Routes>
            {/* public routes */}
             <Route path="/login" element={<Login />} />
@@ -29,6 +32,7 @@ function App(){
             
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/jobs" element={<ProtectedRoute><Jobs /></ProtectedRoute>} />
+            <Route path="/jobs/:id" element={<ProtectedRoute><JobDetail /></ProtectedRoute>} />
             <Route path="/cover-letters" element={<ProtectedRoute><CoverLetters /></ProtectedRoute>} />
             <Route path="/skills" element={<ProtectedRoute><Skills /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
