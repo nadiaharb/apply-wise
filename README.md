@@ -63,7 +63,8 @@ Optional TOTP-based 2FA via Google Authenticator or Authy. Full setup, enable, a
 
 | AI Resume Match | Cover Letter Generator |
 |----------------|----------------------|
-| ![AI Match](./screenshots/aimatch.png) | | ![AI Match Skills](./screenshots/aimatchskills.png) ![Cover Letter](./screenshots/cv.png) |
+| ![AI Match](./screenshots/aimatch.png) | | ![AI Match Skills](./screenshots/aimatchskills.png) | 
+| ![Cover Letter](./screenshots/cv.png) |
 
 
 ---
