@@ -5,6 +5,8 @@ require('dotenv').config()
 
 const authRoutes=require('./routes/auth')
 const jobsRoutes=require('./routes/jobs')
+const aiRoutes = require('./routes/ai')
+const coverLetterRoutes = require('./routes/coverLetters')
 const errorHandler=require('./middleware/errorHandler')
 
 const app = express()
@@ -15,6 +17,8 @@ app.use(express.json())
 //routes
 app.use('/auth', authRoutes)
 app.use('/jobs',jobsRoutes)
+app.use('/ai', aiRoutes)
+app.use('/cover-letters', coverLetterRoutes)
 //health check
 app.get('/',(req,res)=>{
     res.json({message: 'ApplyWise is running 🚀'})

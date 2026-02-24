@@ -5,6 +5,7 @@ import StatusBadge from '../components/StatusBadge'
 import EditJobModal from '../components/EditJobModal'
 import AddInterviewModal from '../components/AddInterviewModal'
 import { useJob, useDeleteJob, useDeleteInterview } from '../hooks/useJobs'
+import AIAnalysis from '../components/AIAnalysis'
 
 const interviewTypeLabels = {
   phone:     '📞 Phone Screen',
@@ -194,19 +195,7 @@ const JobDetail = () => {
         </div>
 
         {/* AI section placeholder — Day 7 */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl p-6 mt-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="font-semibold text-gray-800">🤖 AI Analysis</h2>
-              <p className="text-gray-500 text-sm mt-0.5">
-                Get your resume matched against this job description
-              </p>
-            </div>
-            <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">
-              Coming tomorrow
-            </span>
-          </div>
-        </div>
+        <AIAnalysis job={job} />
 
         {/* Interviews */}
         <div className="bg-white rounded-2xl border border-gray-200 p-6 mt-6">
