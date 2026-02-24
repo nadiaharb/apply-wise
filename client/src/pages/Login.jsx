@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import AuthLayout from '../layouts/AuthLayout'
 
 const Login = () => {
-  const { login } = useAuth()
+  const { user, login } = useAuth()
+  if (user) return <Navigate to="/dashboard" replace />
   const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)

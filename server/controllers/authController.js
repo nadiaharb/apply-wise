@@ -276,6 +276,20 @@ const disable2FA = async (req, res, next) => {
   }
 }
 
+const updateProfile = async (req, res, next) => {
+  try {
+    const { name } = req.body
+    const user = await prisma.user.update({
+      where: { id: req.userId },
+      data: { name },
+      select: { id: true, name: true, email: true, plan: true, twoFactorEnabled: true }
+    })
+    res.json({ user })
+  } catch (err) {
+    next(err)
+  }
+}
+
 module.exports = {
   register,
   login,
@@ -283,5 +297,6 @@ module.exports = {
   getMe,
   setup2FA,
   enable2FA,
-  disable2FA
+  disable2FA,
+  updateProfile
 }

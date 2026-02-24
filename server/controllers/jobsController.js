@@ -223,10 +223,11 @@ const getStats = async (req, res, next) => {
       statusCounts[status] = _count.status
     })
 
-    // calculate response rate
+    // calculate response rate (all non-wishlist jobs are "applied")
     const responded = statusCounts.interview + statusCounts.offer + statusCounts.rejected
-    const responseRate = statusCounts.applied > 0
-      ? Math.round((responded / (statusCounts.applied + responded)) * 100)
+    const totalApplied = statusCounts.applied + responded
+    const responseRate = totalApplied > 0
+      ? Math.round((responded / totalApplied) * 100)
       : 0
 
     res.json({

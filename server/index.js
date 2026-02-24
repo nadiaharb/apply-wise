@@ -7,6 +7,7 @@ const authRoutes=require('./routes/auth')
 const jobsRoutes=require('./routes/jobs')
 const aiRoutes = require('./routes/ai')
 const coverLetterRoutes = require('./routes/coverLetters')
+const analyticsRoutes = require('./routes/analytics')
 const errorHandler=require('./middleware/errorHandler')
 
 const app = express()
@@ -19,6 +20,7 @@ app.use('/auth', authRoutes)
 app.use('/jobs',jobsRoutes)
 app.use('/ai', aiRoutes)
 app.use('/cover-letters', coverLetterRoutes)
+app.use('/analytics', analyticsRoutes)
 //health check
 app.get('/',(req,res)=>{
     res.json({message: 'ApplyWise is running 🚀'})
