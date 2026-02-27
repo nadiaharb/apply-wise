@@ -1,6 +1,6 @@
 const prisma = require('../prisma/client')
 
-// ─── Get all jobs for logged-in user ─────────────────────────
+// Get all jobs for logged-in user 
 
 const getJobs = async (req, res, next) => {
   try {
@@ -29,7 +29,7 @@ const getJobs = async (req, res, next) => {
   }
 }
 
-// ─── Get single job ───────────────────────────────────────────
+//  Get single job 
 
 const getJob = async (req, res, next) => {
   try {
@@ -51,7 +51,7 @@ const getJob = async (req, res, next) => {
   }
 }
 
-// ─── Create job ───────────────────────────────────────────────
+// Create job 
 
 const createJob = async (req, res, next) => {
   try {
@@ -107,7 +107,7 @@ const createJob = async (req, res, next) => {
   }
 }
 
-// ─── Update job ───────────────────────────────────────────────
+// Update job 
 
 const updateJob = async (req, res, next) => {
   try {
@@ -157,7 +157,7 @@ const updateJob = async (req, res, next) => {
   }
 }
 
-// ─── Delete job ───────────────────────────────────────────────
+// Delete job 
 
 const deleteJob = async (req, res, next) => {
   try {
@@ -179,7 +179,7 @@ const deleteJob = async (req, res, next) => {
   }
 }
 
-// ─── Get job stats ────────────────────────────────────────────
+//  Get job stats 
 
 const getStats = async (req, res, next) => {
   try {
@@ -211,7 +211,7 @@ const getStats = async (req, res, next) => {
       })
     ])
 
-    // shape the byStatus into a clean object
+   
     const statusCounts = {
       wishlist: 0,
       applied: 0,
@@ -223,7 +223,7 @@ const getStats = async (req, res, next) => {
       statusCounts[status] = _count.status
     })
 
-    // calculate response rate (all non-wishlist jobs are "applied")
+    // calculate response rate all non wishlist jobs are applied
     const responded = statusCounts.interview + statusCounts.offer + statusCounts.rejected
     const totalApplied = statusCounts.applied + responded
     const responseRate = totalApplied > 0
@@ -241,7 +241,7 @@ const getStats = async (req, res, next) => {
   }
 }
 
-// ─── Add interview to a job ───────────────────────────────────
+//  Add interview to a job 
 
 const addInterview = async (req, res, next) => {
   try {
@@ -283,7 +283,7 @@ const addInterview = async (req, res, next) => {
   }
 }
 
-// ─── Update interview ─────────────────────────────────────────
+//  Update interview 
 
 const updateInterview = async (req, res, next) => {
   try {
@@ -315,7 +315,7 @@ const updateInterview = async (req, res, next) => {
   }
 }
 
-// ─── Delete interview ─────────────────────────────────────────
+// Delete interview 
 
 const deleteInterview = async (req, res, next) => {
   try {

@@ -13,7 +13,7 @@ const TwoFactorLogin = () => {
     if (!twoFactorPending) {
       logout()
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) 
 
   if (!twoFactorPending) return null
 

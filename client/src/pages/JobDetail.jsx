@@ -194,7 +194,7 @@ const JobDetail = () => {
           </div>
         </div>
 
-        {/* AI section placeholder — Day 7 */}
+        {/* AI section */}
         <AIAnalysis job={job} />
 
         {/* Interviews */}

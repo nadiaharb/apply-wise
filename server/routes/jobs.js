@@ -16,7 +16,7 @@ const {
 // all routes protected
 router.use(authMiddleware)
 
-// stats — must be before /:id so it doesn't get swallowed
+
 router.get('/stats', getStats)
 
 // jobs CRUD
